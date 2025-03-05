@@ -20,7 +20,12 @@ export async function getSelectedFiles(): Promise<string[] | null> {
       end tell
     `);
 
-    return result ? result.split(",").filter(Boolean).map((path: string) => path.trim()) : null;
+    return result
+      ? result
+          .split(",")
+          .filter(Boolean)
+          .map((path: string) => path.trim())
+      : null;
   } catch (error) {
     console.error("Failed to get selected files:", error);
     return null;

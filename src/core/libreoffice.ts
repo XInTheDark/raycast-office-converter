@@ -1,13 +1,13 @@
-import path from 'path';
-import fs from 'fs/promises';
+import path from "path";
+import fs from "fs/promises";
 
-import libre from 'libreoffice-convert';
-import { promisify } from 'util';
+import libre from "libreoffice-convert";
+import { promisify } from "util";
 
 const convertAsync = promisify(libre.convert);
 
 function toExt(format: string): string {
-  return format.startsWith('.') ? format : `.${format}`;
+  return format.startsWith(".") ? format : `.${format}`;
 }
 
 function changeExt(filePath: string, newExt: string): string {

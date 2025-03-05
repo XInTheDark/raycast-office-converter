@@ -24,7 +24,8 @@ export default async function convertFiles(props: { arguments: { inputPath?: str
   await showToast(Toast.Style.Animated, "Converting files");
   await closeMainWindow();
 
-  let successful = 0, failed = 0;
+  let successful = 0,
+    failed = 0;
   for (const file of files) {
     try {
       await convertFileCore(file, format);

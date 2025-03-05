@@ -1,11 +1,11 @@
 # Office Converter
 
-Convert office files to various formats using LibreOffice
+Convert office files to various formats (**including PDF**) using LibreOffice
 
 ## Getting Started
 
 You **must have LibreOffice installed** in your system to use this script. [Download it here](https://www.libreoffice.org/download/download-libreoffice/).
-If you've already installed it normally (LibreOffice is placed in your /Applications folder), you're good to go!
+If you've already installed it normally (LibreOffice is placed in your Applications folder), you're good to go!
 
 ## Commands
 
