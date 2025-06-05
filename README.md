@@ -1,6 +1,6 @@
 # Office Converter
 
-Convert office files to various formats using LibreOffice
+Convert office files to various formats
 
 > ✅ Supports wide range of input formats, including all Microsoft Office formats
 > 
@@ -16,8 +16,19 @@ Convert office files to various formats using LibreOffice
 
 ## Getting Started
 
-You **must have LibreOffice installed** in your system to use this extension. [Download it here](https://www.libreoffice.org/download/download-libreoffice/).
+This extension supports multiple backends for file conversion. The requirements for each one are listed below:
+
+### Backends
+
+#### LibreOffice
+You **must have LibreOffice installed** in your system. [Download it here](https://www.libreoffice.org/download/download-libreoffice/).
 If you've already installed it normally (LibreOffice is placed in your Applications folder), you're good to go!
+
+#### Docling
+```shell
+pip install docling
+pip install ocrmac
+```
 
 ## Commands
 

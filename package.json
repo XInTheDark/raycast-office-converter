@@ -31,11 +31,39 @@
       "mode": "view"
     }
   ],
+  "preferences": [
+    {
+      "name": "defaultBackend",
+      "title": "Default Backend",
+      "description": "The default backend to use",
+      "type": "dropdown",
+      "required": false,
+      "data": [
+        {
+          "title": "LibreOffice",
+          "value": "libreoffice"
+        },
+        {
+          "title": "Docling",
+          "value": "docling"
+        }
+      ]
+    },
+    {
+      "name": "cliOptions",
+      "title": "CLI Options",
+      "description": "JSON object of additional CLI options for each backend.",
+      "type": "textfield",
+      "required": false,
+      "default": "{}"
+    }
+  ],
   "dependencies": {
     "@raycast/api": "^1.93.1",
     "@raycast/utils": "^1.17.0",
     "fs.promises": "^0.1.2",
-    "libreoffice-convert": "^1.6.1"
+    "libreoffice-convert": "^1.6.1",
+    "shell-escape": "^0.2.0"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.11",
