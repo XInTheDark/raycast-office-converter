@@ -35,6 +35,12 @@
       "title": "Convert to Markdown",
       "description": "Convert file(s) to Markdown",
       "mode": "view"
+    },
+    {
+      "name": "merge-files",
+      "title": "Merge Files",
+      "description": "A simple utility to merge some text files together",
+      "mode": "view"
     }
   ],
   "preferences": [
