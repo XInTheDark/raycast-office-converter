@@ -4,6 +4,8 @@ import { FormComponent } from "./views/form";
 import { useState, useEffect, useRef } from "react";
 
 import { handleConversion } from "./core/convert";
+import { convertToFormats } from "./constants";
+import { getDefaultBackend } from "./utils/cliOptions";
 
 export default function ConvertFiles(props: { arguments: { format?: string; inputFiles?: string[] | null } }) {
   const format = props.arguments.format;
@@ -19,8 +21,15 @@ export default function ConvertFiles(props: { arguments: { format?: string; inpu
       const selectedFiles = await getSelectedFiles();
 
       // Validate input
-      if (selectedFiles && selectedFiles.length > 0 && format) {
-        await handleConversion({ inputPaths: selectedFiles, format: format || "" });
+      const availableFormats = convertToFormats[getDefaultBackend()];
+      const valid: boolean =
+        !!selectedFiles &&
+        selectedFiles.length > 0 &&
+        !!format &&
+        (!availableFormats || availableFormats.includes(format));
+
+      if (valid) {
+        await handleConversion({ inputPaths: selectedFiles as string[], format: format || "" });
       } else {
         // Input is incomplete, show the form
         setArgs({ ...props.arguments, inputFiles: selectedFiles });
