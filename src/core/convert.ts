@@ -2,6 +2,7 @@ import { closeMainWindow, popToRoot, showToast, Toast } from "@raycast/api";
 
 import { convert as libreoffice } from "./backends/libreoffice";
 import { convert as docling } from "./backends/docling";
+import { convert as markitdown } from "./backends/markitdown";
 
 import { Backend } from "../types";
 import { getDefaultBackend } from "../utils/cliOptions";
@@ -54,6 +55,8 @@ async function convertFileCore(file: string, format: string, backend?: Backend) 
       return await libreoffice(file, format);
     case Backend.Docling:
       return await docling(file, format);
+    case Backend.MarkItDown:
+      return await markitdown(file, format);
     default:
       throw new Error(`Unsupported backend: ${backend}`);
   }

@@ -30,6 +30,11 @@ pip install docling
 pip install ocrmac
 ```
 
+#### MarkItDown
+```shell
+pip install 'markitdown[all]'
+```
+
 ## Commands
 
 ### Convert Files

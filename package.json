@@ -46,6 +46,10 @@
         {
           "title": "Docling",
           "value": "docling"
+        },
+        {
+          "title": "MarkItDown",
+          "value": "markitdown"
         }
       ]
     },
