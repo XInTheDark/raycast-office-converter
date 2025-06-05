@@ -33,6 +33,7 @@ export async function handleConversion(params: { inputPaths: string[]; format: s
     try {
       await convertFileCore(file, params.format, params.backend);
       successful++;
+      await showToast(Toast.Style.Animated, `Converted ${file}`);
     } catch (e) {
       console.error(e);
       failed++;
