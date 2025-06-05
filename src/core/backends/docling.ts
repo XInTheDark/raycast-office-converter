@@ -28,6 +28,8 @@ export async function convert(inputPath: string, format: string): Promise<void> 
     formatMap[format] || format,
     "--output",
     tempFolder,
+    "--pdf-backend",
+    "dlparse_v4",
     "--ocr-engine",
     "ocrmac",
     "--image-export-mode",
