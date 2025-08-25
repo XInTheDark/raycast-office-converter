@@ -16,11 +16,11 @@ const formatMap: Record<string, string> = {
 
 // https://docling-project.github.io/docling/usage/#convert-a-single-document
 // https://docling-project.github.io/docling/reference/cli/
-export async function convert(inputPath: string, format: string): Promise<void> {
+export async function convert(inputPath: string, format: string, options?: { outputDir?: string }): Promise<void> {
   const cliOptions = getCliOptions(Backend.Docling);
 
   // set up temp folder
-  const tempFolder = createTempFolder();
+  const tempFolder = options?.outputDir || createTempFolder();
 
   const args = [
     inputPath,
@@ -36,9 +36,9 @@ export async function convert(inputPath: string, format: string): Promise<void> 
     "placeholder",
   ];
   const defaultOptions = shellescape(args);
-  const options = cliOptions ? `${defaultOptions} ${cliOptions}` : defaultOptions;
+  const mergedOptions = cliOptions ? `${defaultOptions} ${cliOptions}` : defaultOptions;
 
-  const command = `docling ${options}`;
+  const command = `docling ${mergedOptions}`;
   console.log(`Executing: ${command}`);
 
   execSync(command, {
@@ -47,8 +47,7 @@ export async function convert(inputPath: string, format: string): Promise<void> 
     stdio: "inherit",
   });
 
-  // move the output file to the desired location
-  // look inside tempFolder for the output file
+  // locate the output file inside tempFolder
   let fileName = fs.readdirSync(tempFolder).find((file) => file.endsWith(toExt(format)));
   if (!fileName) {
     // try to use the biggest file in the folder, skipping the ext check
@@ -65,8 +64,12 @@ export async function convert(inputPath: string, format: string): Promise<void> 
   const filePath = path.join(tempFolder, fileName);
   console.log(`Output file found: ${filePath}`);
 
-  const outputPath = await getOutputPath(inputPath, toExt(format));
-  // move file
-  fs.renameSync(filePath, outputPath);
-  console.log(`File moved to: ${outputPath}`);
+  // If outputDir is provided, the file is already in the desired location.
+  // Otherwise, move it next to the input file with a safe name.
+  if (!options?.outputDir) {
+    const outputPath = await getOutputPath(inputPath, toExt(format));
+    // move file
+    fs.renameSync(filePath, outputPath);
+    console.log(`File moved to: ${outputPath}`);
+  }
 }

@@ -50,14 +50,19 @@ export async function handleConversion(params: { inputPaths: string[]; format: s
   await popToRoot();
 }
 
-async function convertFileCore(file: string, format: string, backend?: Backend) {
+export async function convertFileCore(
+  file: string,
+  format: string,
+  backend?: Backend,
+  options?: { outputDir?: string },
+) {
   switch (backend) {
     case Backend.LibreOffice:
-      return await libreoffice(file, format);
+      return await libreoffice(file, format, options);
     case Backend.Docling:
-      return await docling(file, format);
+      return await docling(file, format, options);
     case Backend.MarkItDown:
-      return await markitdown(file, format);
+      return await markitdown(file, format, options);
     default:
       throw new Error(`Unsupported backend: ${backend}`);
   }

@@ -37,6 +37,12 @@
       "mode": "view"
     },
     {
+      "name": "convert-to-text",
+      "title": "Convert to Text",
+      "description": "Convert selected files to Markdown in a temp folder, concatenate, and copy",
+      "mode": "view"
+    },
+    {
       "name": "merge-files",
       "title": "Merge Files",
       "description": "A simple utility to merge some text files together",
